@@ -5,8 +5,8 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMedia
 from aiogram.dispatcher.filters import Command
 
 API_TOKEN = '7802876030:AAHzr5E3g1lIzhGrvB0stDzQjzvhYa8I1bw'
-ADMIN_USERNAME = '@pain_luv'  # обновлено
-ADMIN_ID = 6803198967  # Заменить на свой Telegram ID, если потребуется точнее
+ADMIN_USERNAME = '@pain_luv'
+ADMIN_ID = 1928878601  # Заменить на свой Telegram ID, если потребуется точнее
 
 logging.basicConfig(level=logging.INFO)
 
@@ -15,13 +15,6 @@ dp = Dispatcher(bot)
 
 CATEGORIES = ["Сумки", "Обувь", "Верхняя одежда", "Штаны", "Шорты", "Футболки", "Аксессуары"]
 DATA_FILE = 'catalog.json'
-
-import os
-
-# Создание пустого файла catalog.json при первом запуске
-if not os.path.exists(DATA_FILE):
-    with open(DATA_FILE, 'w', encoding='utf-8') as f:
-        json.dump({cat: [] for cat in CATEGORIES}, f, ensure_ascii=False, indent=2)
 
 # Хранилище временных данных для добавления
 temp_storage = {}
@@ -128,10 +121,10 @@ async def handle_order(callback_query: types.CallbackQuery):
 
     await bot.send_message(
         ADMIN_ID,
-        f"🔔 Новый запрос на заказ:
+        f"""🔔 Новый запрос на заказ:
 Категория: {cat}
 Описание: {item['description']}
-От: @{callback_query.from_user.username}"
+От: @{callback_query.from_user.username}"""
     )
     await bot.send_photo(
         ADMIN_ID,
@@ -140,5 +133,7 @@ async def handle_order(callback_query: types.CallbackQuery):
     await callback_query.message.answer("📩 Вас перенаправляют к продавцу для оформления заказа.")
     await callback_query.message.answer(f"https://t.me/{ADMIN_USERNAME.lstrip('@')}")
 
+
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
+
