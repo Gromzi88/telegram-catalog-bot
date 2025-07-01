@@ -5,8 +5,8 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InputMedia
 from aiogram.dispatcher.filters import Command
 
 API_TOKEN = '7802876030:AAHzr5E3g1lIzhGrvB0stDzQjzvhYa8I1bw'
-ADMIN_USERNAME = '@048goatt'
-ADMIN_ID = 6803198967  # Заменить на свой Telegram ID, если потребуется точнее
+ADMIN_USERNAME = '@pain_luv'
+ADMIN_ID = 1928878601  # Заменить на свой Telegram ID, если потребуется точнее
 
 logging.basicConfig(level=logging.INFO)
 
@@ -131,7 +131,8 @@ async def handle_order(callback_query: types.CallbackQuery):
         photo=item["photo"]
     )
     await callback_query.message.answer("📩 Вас перенаправляют к продавцу для оформления заказа.")
-    await callback_query.message.answer(f"https://t.me/{ADMIN_USERNAME.lstrip('@')}")
+    await callback_query.message.answer(f"https://t.me/pain_luv}")
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
+
