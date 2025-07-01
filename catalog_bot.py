@@ -119,19 +119,19 @@ async def handle_order(callback_query: types.CallbackQuery):
     catalog = load_catalog()
     item = catalog[cat][idx]
 
-    await bot.send_message(
-        ADMIN_ID,
-        f"🔔 Новый запрос на заказ:
+   await bot.send_message(
+    ADMIN_ID,
+    f"""🔔 Новый запрос на заказ:
 Категория: {cat}
 Описание: {item['description']}
-От: @{callback_query.from_user.username}"
-    )
-    await bot.send_photo(
-        ADMIN_ID,
-        photo=item["photo"]
-    )
-    await callback_query.message.answer("📩 Вас перенаправляют к продавцу для оформления заказа.")
-    await callback_query.message.answer(f"https://t.me/pain_luv}")
+От: @{callback_query.from_user.username}"""
+)
+await bot.send_photo(
+    ADMIN_ID,
+    photo=item["photo"]
+)
+await callback_query.message.answer("📩 Вас перенаправляют к продавцу для оформления заказа.")
+await callback_query.message.answer(f"https://t.me/{ADMIN_USERNAME.lstrip('@')}")
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
